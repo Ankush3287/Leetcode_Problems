@@ -11,19 +11,23 @@ class Solution {
     }
 public:
     int uniquePaths(int m, int n) {
-        vector<int>dp(n,0);
-        vector<int>temp(n,0);
-        temp[0]=1;
+        
+        vector<int>prev(n,0);
         for(int i=0;i<m;i++){
+            vector<int>curr(n,0);
             for(int j=0;j<n;j++){
-                if(i==0 && j==0)    continue;
-                if(j==0)    temp[j]=dp[j];
-                else
-                temp[j]=temp[j-1]+dp[j];
+                if(i==0 && j==0){    
+                    curr[j]=1;
+                    continue;
+                }
+                int up=prev[j];
+                int left=0;
+                if(j>0) left=curr[j-1];
+                curr[j]=up+left;
             }
-            dp=temp;
+            prev=curr;
             
         }
-        return dp[n-1];
+        return prev[n-1];
     }
 };
