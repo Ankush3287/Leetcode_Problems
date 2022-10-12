@@ -24,18 +24,20 @@ public:
     {
         // code here
         vector<vector<int>>dp(N,vector<int>(W+1,0));
+        vector<int>prev(W+1),curr(W+1,0);
         for(int i=0;i<=W;i++){
-            dp[0][i]=val[0]*(i/wt[0]);
+            prev[i]=val[0]*(i/wt[0]);
         }
         for(int i=1;i<N;i++){
             for(int j=0;j<=W;j++){
                 int pick=0;
-                int notPick=dp[i-1][j];
-                if(wt[i]<=j)  pick=val[i]+dp[i][j-wt[i]];
-                dp[i][j]=max(pick,notPick);
+                int notPick=prev[j];
+                if(wt[i]<=j)  pick=val[i]+curr[j-wt[i]];
+                curr[j]=max(pick,notPick);
             }
+            prev=curr;
         }
-        return dp[N-1][W];
+        return prev[W];
         
     }
 };
