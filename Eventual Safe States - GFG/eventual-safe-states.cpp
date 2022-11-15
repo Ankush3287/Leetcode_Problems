@@ -20,24 +20,22 @@ class Solution {
                 indegree[i]++;
             }
         }
+        vector<int>ans;
         queue<int>q;
-        
-        
         for(int i=0;i<V;i++){
             if(!indegree[i])    q.push(i);
         }
-        vector<int>st;
         while(!q.empty()){
             int node=q.front();
             q.pop();
-            st.push_back(node);
+            ans.push_back(node);
             for(auto it:adjRev[node]){
                 indegree[it]--;
                 if(!indegree[it])   q.push(it);
             }
         }
-        sort(st.begin(),st.end());
-        return st;
+        sort(ans.begin(),ans.end());
+        return ans;
     }
 };
 
