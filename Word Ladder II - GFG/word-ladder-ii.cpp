@@ -29,12 +29,7 @@ public:
             }
             string word=vec.back();
             if(word==endWord){
-                if(ans.size()==0){
-                    ans.push_back(vec);
-                }
-                else if(ans[0].size()==vec.size()){
-                    ans.push_back(vec);
-                }
+                ans.push_back(vec);
             }
             
             for(int i=0;i<word.size();i++){
