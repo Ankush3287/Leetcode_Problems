@@ -18,7 +18,7 @@ class Solution
         }
         auto it=pq.top();
         pq.pop();
-        int st=it.second;
+        
         int en=it.first;
         int cnt=1;
         while(!pq.empty()){
@@ -28,7 +28,7 @@ class Solution
             int finish=it.first;
             if(begin>en){
                 cnt++;
-                st=begin;
+                
                 en=finish;
             }
         }
